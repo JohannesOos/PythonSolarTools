@@ -62,10 +62,23 @@ def x_to_yearly(E_Load, resolution):
     ratio =  goal_length / len(E_Load)
     new_profile = []
     for a in range(ratio):
-        for b in range(len(E_load)):
+        for b in range(len(E_Load)):
             new_profile.append(E_Load[b])
     return new_profile
     
+#Option3 is to adjsut E_Solar resolution
+def solar_reso_better(E_Solar, resolution):
+    """
+    E_Solar: List of hourly solar value for entire year
+    resolution: resolution of values in minutes Must be divisor of 1 hour
+    """
+    goal_length = 8760 *60/resolution
+    ratio =  goal_length / len(E_Solar)
+    new_profile = []
+    for a in range(len(E_Solar)):
+        for b in range(ratio):
+            new_profile.append(E_Solar[a])
+    return new_profile    
 
 
 
