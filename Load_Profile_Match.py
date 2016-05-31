@@ -35,7 +35,7 @@ for row_index in rowsWithData:
     E_Solar.append(value)
 
 if len(E_Solar) == 8760:
-    print 'One year hourly read in'
+    print 'One year hourly solar production read in'
 else:
     print 'Check length of Solar file'
 
@@ -48,7 +48,17 @@ columnWithLoadData = 3
 columnWithLoadTime = 0
 
 #define rows with data
-rowsWithData = range(1,8498)   
+rowsWithLoadData = range(1,8498) 
+
+E_Load_prelim = []
+for row_index in rowsWithLoadData:
+    value = sheet_load.cell(row_index, columnWithLoadData).value       
+    E_Load_prelim.append(value)
+
+if len(E_Load_prelim) == 8760:
+    print 'One year hourly load read in'
+else:
+    print 'Check length and resolution of load file'
 
 
    
