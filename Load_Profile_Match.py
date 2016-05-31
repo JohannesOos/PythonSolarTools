@@ -18,7 +18,9 @@ solarProfile = []
 
 from xlrd import open_workbook
 
-book = open_workbook('C:/Users/Oos/sample_Project_HourlyRes_EW.xls')
+
+"""get solar production profile"""
+book = open_workbook('C:/Users/Oos/sonstiges/PythonSolarTools/sample_Project_HourlyRes_EW.xls')
 sheet = book.sheet_by_index(0)
 
 #define column number
@@ -26,7 +28,6 @@ columnWithData = 6
 
 #define rows with data
 rowsWithData = range(13,8773)
-
 
 E_Solar = []
 for row_index in rowsWithData:
@@ -38,8 +39,20 @@ if len(E_Solar) == 8760:
 else:
     print 'Check length of Solar file'
 
+"""get load profile"""
+book_load = open_workbook('C:/Users/Oos/sonstiges/PythonSolarTools/power_logger_FLUKE_sample.xlsx')
+sheet_load = book_load.sheet_by_index(0)
+
+#define column number
+columnWithLoadData = 3
+columnWithLoadTime = 0
+
+#define rows with data
+rowsWithData = range(1,8498)   
+
+
    
-#use this to adjust file
+#use this to adjust files
 #Option 1 is values in different resolution for the entire year
 def x_to_hourly_entire_year(E_Load):
     """ E_Load: List of load value for entire year
