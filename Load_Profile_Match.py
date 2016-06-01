@@ -101,7 +101,20 @@ def solar_reso_better(E_Solar, resolution):
     for a in range(len(E_Solar)):
         for b in range(ratio):
             new_profile.append(E_Solar[a])
-    return new_profile    
+    return new_profile 
+    
+
+E_Load = x_to_yearly(E_Load_prelim, 5)
+E_Solar = solar_reso_better(E_Solar, 5)
+ 
+#create both files
+if len(E_Load) == len(E_Solar):
+    print 'bith files same length'
+else:
+    print 'recheck file lengths'
+    print ('Solar file length: ' + str(len(E_Solar)) +
+            ' Load file length: ' + str(len(E_Load)))
+            
 
 
 
