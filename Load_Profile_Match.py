@@ -8,6 +8,7 @@ Created on Mon May 30 06:51:03 2016
 import pandas as pd
 import numpy as np
 from  xlrd import open_workbook
+from scipy import optimize as op
 
 #loadprofile from FLUKE CSV measurement file
 loadprofile = []
@@ -40,7 +41,7 @@ else:
     print 'Check length of Solar file'
 
 """get load profile"""
-book_load = open_workbook('C:/Users/Oos/sonstiges/PythonSolarTools/power_logger_FLUKE_sample.xlsx')
+book_load = open_workbook('C:/Users/Oos/sonstiges/PythonSolarTools/power_logger_FLUKE_sample_1day.xlsx')
 sheet_load = book_load.sheet_by_index(0)
 
 #define column number
@@ -48,7 +49,7 @@ columnWithLoadData = 3
 columnWithLoadTime = 0
 
 #define rows with data
-rowsWithLoadData = range(1,8498) 
+rowsWithLoadData = range(1,1441) 
 
 E_Load_prelim = []
 for row_index in rowsWithLoadData:
@@ -80,7 +81,12 @@ def x_to_yearly(E_Load, resolution):
     """
     E_Load: List of production value starting and ending with midnight
     resolution: resolution of values in minutes Must be divisor of 1 hour
+                must be smaller or equal to 60 min
     """
+#    if resolution > 60:
+#        if len(E_Load)/(resolution/60/24)
+    if len(E_Load)/(60/resolution) % 24 != 0:
+        print 'not ful days in file, check file and resolution'
     goal_length = 8760 *60/resolution
     ratio =  goal_length / len(E_Load)
     new_profile = []
@@ -103,17 +109,46 @@ def solar_reso_better(E_Solar, resolution):
             new_profile.append(E_Solar[a])
     return new_profile 
     
-
-E_Load = x_to_yearly(E_Load_prelim, 5)
-E_Solar = solar_reso_better(E_Solar, 5)
+"""adjsut code here file specific"""
+E_Load = x_to_yearly(E_Load_prelim, 1)
+E_Solar = solar_reso_better(E_Solar, 1)
  
-#create both files
+#check lengths of both files
 if len(E_Load) == len(E_Solar):
-    print 'bith files same length'
+    print 'both files same length'
 else:
     print 'recheck file lengths'
     print ('Solar file length: ' + str(len(E_Solar)) +
             ' Load file length: ' + str(len(E_Load)))
+            
+            
+            
+def compare_profiles(E_Solar, E_Load):
+    """
+    comapres profiles roughly
+    E_Solar: lsit of produciton solar syste,
+    E_Load: list of demand client
+    returns positive vaue if overproduction of solar yearly sum in kWh
+    """
+    result = []
+    reso = len(E_Solar)/8760
+    for i in range(len(E_Solar)):
+        value = E_Solar[i] -E_Load[i]
+        result.append(value)
+    sumOfEnergy = sum(result)
+    sumOfEnergy_kWh = sumOfEnergy/1000/reso
+    return sumOfEnergy_kWh
+        
+E_Sum = compare_profiles(E_Solar, E_Load)
+if E_Sum >0:
+    print 'There is too much solar energy: ' + str(E_Sum) + ' kWh'
+else:
+    print 'There is too little solar energy: ' + str(E_Sum) + ' kWh'
+    
+
+    
+    
+    
             
 
 
