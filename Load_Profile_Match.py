@@ -150,7 +150,7 @@ def monthly_sum(E_Solar, E_Load):
     """
     comapres profiles in monthly sums
     must be compete years
-    E_Solar: lsit of produciton solar syste,
+    E_Solar: lsit of produciton solar system,
     E_Load: list of demand client
     returns list of monhtly values positive vaue if overproduction of solar yearly sum in kWh
     """
