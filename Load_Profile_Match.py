@@ -141,9 +141,40 @@ def compare_profiles(E_Solar, E_Load):
         
 E_Sum = compare_profiles(E_Solar, E_Load)
 if E_Sum >0:
-    print 'There is too much solar energy: ' + str(E_Sum) + ' kWh'
+    print 'There is too much yearly solar energy: ' + str(E_Sum) + ' kWh'
 else:
-    print 'There is too little solar energy: ' + str(E_Sum) + ' kWh'
+    print 'There is too little yearly solar energy: ' + str(E_Sum) + ' kWh'
+    
+    
+def monthly_sum(E_Solar, E_Load):
+    """
+    comapres profiles in monthly sums
+    must be compete years
+    E_Solar: lsit of produciton solar syste,
+    E_Load: list of demand client
+    returns list of monhtly values positive vaue if overproduction of solar yearly sum in kWh
+    """
+    result = []
+    reso = len(E_Solar)/8760
+    month_len = len(E_Solar)/12
+    
+    month_sum_list = []
+    for i in range(len(E_Solar)):
+        value = E_Solar[i] -E_Load[i]
+        result.append(value)
+    for a in range(12):
+        sum_month = sum(result[(a*month_len):((a+1)*month_len)])
+        month_sum_list.append(sum_month/1000/reso)
+    return month_sum_list
+        
+Month_Sum = monthly_sum(E_Solar, E_Load)
+for a in range(len(Month_Sum)):
+    if Month_Sum[a] > 0:
+        print 'Month: ' + str(a+1) + ' has ' + str(Month_Sum[a]) + ' kWh overproduction'
+    else:
+        print 'Month: ' + str(a+1) + ' has ' + str(Month_Sum[a]) + ' kWh underproduction'
+
+
     
 
     
