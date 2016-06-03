@@ -175,7 +175,34 @@ for a in range(len(Month_Sum)):
         print 'Month: ' + str(a+1) + ' has ' + str(Month_Sum[a]) + ' kWh underproduction'
 
 
+
+def daily_sum(E_Solar, E_Load):
+    """
+    comapres profiles in daily sums
+    must be complete years
+    E_Solar: lsit of produciton solar system,
+    E_Load: list of demand client
+    returns list of monhtly values positive vaue if overproduction of solar yearly sum in kWh
+    """
+    result = []
+    reso = len(E_Solar)/8760
+    day_len = len(E_Solar)/365
     
+    day_sum_list = []
+    for i in range(len(E_Solar)):
+        value = E_Solar[i] -E_Load[i]
+        result.append(value)
+    for a in range(365):
+        sum_day = sum(result[(a*day_len):((a+1)*day_len)])
+        day_sum_list.append(sum_day/1000/reso)
+    return day_sum_list
+        
+Day_Sum = daily_sum(E_Solar, E_Load)
+for a in range(len(Day_Sum)):
+    if Day_Sum[a] > 0:
+        print 'Day: ' + str(a+1) + ' has ' + str(Day_Sum[a]) + ' kWh overproduction'
+    else:
+        print 'Day: ' + str(a+1) + ' has ' + str(Day_Sum[a]) + ' kWh underproduction'    
 
     
     
