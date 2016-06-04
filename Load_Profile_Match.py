@@ -9,6 +9,8 @@ import pandas as pd
 import numpy as np
 from  xlrd import open_workbook
 from scipy import optimize as op
+import matplotlib.mlab as mlab
+import matplotlib.pyplot as plt
 
 #loadprofile from FLUKE CSV measurement file
 loadprofile = []
@@ -202,8 +204,22 @@ for a in range(len(Day_Sum)):
     if Day_Sum[a] > 0:
         print 'Day: ' + str(a+1) + ' has ' + str(Day_Sum[a]) + ' kWh overproduction'
     else:
-        print 'Day: ' + str(a+1) + ' has ' + str(Day_Sum[a]) + ' kWh underproduction'    
+        print 'Day: ' + str(a+1) + ' has ' + str(Day_Sum[a]) + ' kWh underproduction' 
+        
+def plot_daily_sums(E_Solar, E_Load):
+    time_list = daily_sum(E_Solar, E_Load)
+    num_values = len(time_list)
 
+    plt.plot(range(1,num_values+1),time_list,  'r')
+    plt.xlabel('Day')
+    plt.ylabel('kWh')
+    plt.title(r'kWh surplus and deficit')
+    
+    # Tweak spacing to prevent clipping of ylabel
+    plt.subplots_adjust(left=0.15)
+    plt.show()
+
+plot_daily_sums(E_Solar, E_Load)
     
     
     
