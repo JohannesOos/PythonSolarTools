@@ -206,20 +206,29 @@ for a in range(len(Day_Sum)):
     else:
         print 'Day: ' + str(a+1) + ' has ' + str(Day_Sum[a]) + ' kWh underproduction' 
         
-def plot_daily_sums(E_Solar, E_Load):
-    time_list = daily_sum(E_Solar, E_Load)
-    num_values = len(time_list)
-
-    plt.plot(range(1,num_values+1),time_list,  'r')
-    plt.xlabel('Day')
-    plt.ylabel('kWh')
-    plt.title(r'kWh surplus and deficit')
+def plot_energy_sums(E_Solar, E_Load, time='d'):
+    if time == 'd':
+        time_list = daily_sum(E_Solar, E_Load)
+    elif time == 'm':
+        time_list = monthly_sum(E_Solar, E_Load)
+    else:
+        print 'time must be monthly or daily'
+        
+    if time == 'd' or time == 'm':
+        num_values = len(time_list)
     
-    # Tweak spacing to prevent clipping of ylabel
-    plt.subplots_adjust(left=0.15)
-    plt.show()
+        plt.plot(range(1,num_values+1),time_list,  'r')
+        plt.xlabel('Day')
+        plt.ylabel('kWh')
+        plt.title(r'kWh surplus and deficit')
+        
+        # Tweak spacing to prevent clipping of ylabel
+        plt.subplots_adjust(left=0.15)
+        plt.show()
 
-plot_daily_sums(E_Solar, E_Load)
+plot_energy_sums(E_Solar, E_Load)
+plot_energy_sums(E_Solar, E_Load, 'm')
+plot_energy_sums(E_Solar, E_Load, 'k')
     
     
     
