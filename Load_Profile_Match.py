@@ -231,6 +231,17 @@ plot_energy_sums(E_Solar, E_Load, 'm')
 plot_energy_sums(E_Solar, E_Load, 'k')
     
     
+def adjsut_sizeSolar_to_sum_zero(E_Solar, E_Load):
+    E_Solar_Sum = sum(E_Solar)
+    E_Load_Sum = sum(E_Load)
+    needed_adjsutment_rel = E_Load_Sum / float(E_Solar_Sum) *100
+    return needed_adjsutment_rel
+    
+print (' to come to yearly sum of zero (thepretical), the soalr system needs' +
+        'to be adjusted to ' + 
+        str(adjsut_sizeSolar_to_sum_zero(E_Solar, E_Load)) + '% of its size')
+
+
     
             
 
