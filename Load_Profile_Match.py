@@ -232,6 +232,10 @@ plot_energy_sums(E_Solar, E_Load, 'k')
     
     
 def adjsut_sizeSolar_to_sum_zero(E_Solar, E_Load):
+    """
+    retunrs new size in % of solar system to have a yearly sum of zero
+    between produced and consumed
+    """
     E_Solar_Sum = sum(E_Solar)
     E_Load_Sum = sum(E_Load)
     needed_adjsutment_rel = E_Load_Sum / float(E_Solar_Sum) *100
