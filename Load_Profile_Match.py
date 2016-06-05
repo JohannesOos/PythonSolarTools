@@ -219,7 +219,7 @@ def plot_energy_sums(E_Solar, E_Load, time='d'):
     
         plt.plot(range(1,num_values+1),time_list,  'r')
         plt.xlabel('Day')
-        plt.ylabel('kWh')
+        plt.ylabel('kWh: minus is too little prod, plus is too much')
         plt.title(r'kWh surplus and deficit')
         
         # Tweak spacing to prevent clipping of ylabel
