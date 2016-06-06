@@ -247,6 +247,23 @@ print (' to come to yearly sum of zero (thepretical), the soalr system needs' +
 
 
     
+def overproduction_accroding_to_resolution(E_Solar, E_Load):
+    yearly_prod = sum(E_Solar)
+    yearly_load = sum(E_Load)
+    from_grid = []
+    wasted = []
+    for i in range(len(E_Solar)):
+        dif = E_Solar[i] - E_Load[i]
+        if dif >0:
+            from_grid.append(0)
+            wasted.append(dif)
+        else:
+            from_grid.append(-dif)
+            wasted.append(0)
+    
+    return [yearly_prod, yearly_load, sum(from_grid), sum(wasted)]
+        
+    
             
 
 
