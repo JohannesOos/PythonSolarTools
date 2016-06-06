@@ -265,6 +265,13 @@ def overproduction_accroding_to_resolution(E_Solar, E_Load):
             wasted.append(0)
     
     return [yearly_prod, yearly_load, sum(from_grid), sum(wasted)]
+
+a = overproduction_accroding_to_resolution(E_Solar, E_Load)    
+print ('actual sums are: \n' + 
+        'total yearly production in kWh: ' + str(a[0]/float(1000)) + '\n'
+        'total yearly load in kWh: ' + str(a[1]/float(1000)) + '\n'
+        'total yearly taken from grid in kWh: ' + str(a[2]/float(1000)) +'\n'
+        'total yearly taken from solar in kWh: ' + str(a[3]/float(1000)) )
         
     
             
