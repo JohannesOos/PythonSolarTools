@@ -248,6 +248,9 @@ print (' to come to yearly sum of zero (thepretical), the soalr system needs' +
 
     
 def overproduction_accroding_to_resolution(E_Solar, E_Load):
+    """
+    returns the actual sums of energy, not the theoretical ones
+    """
     yearly_prod = sum(E_Solar)
     yearly_load = sum(E_Load)
     from_grid = []
