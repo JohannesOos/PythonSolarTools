@@ -317,9 +317,18 @@ def theoretical_battery(E_Solar, E_Load, bat_size_kWh = 100, bat_charge_eff = 1,
             else: # battery can power part of differnce
                 from_grid.append(-dif+bat_level)
                 bat_level = 0
-    bat_level_list.append(bat_level)
+        bat_level_list.append(bat_level)
     
-    return [from_grid, wasted, too_much, bat_level_list ]             
+    return [from_grid, wasted, too_much, bat_level_list ]
+
+test = theoretical_battery(E_Solar, E_Load)
+
+if len(test[0]) == len(test[1]) and len(test[2]) == len(test[1]) and len(test[3]) == len(test[1]):
+    print "same lengths"
+else:
+    "something went wrong"
+
+         
                 
             
 
