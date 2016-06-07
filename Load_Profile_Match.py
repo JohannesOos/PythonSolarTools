@@ -275,6 +275,18 @@ print ('actual sums are: \n' +
         
     
             
-
+def theoretical_battery(E_Solar, E_Load, bat_size = 100, bat_charge_eff = 1, bat_discharge_eff = 1):
+    """
+    bith inputs must be yearly
+    bat_size is storage size in kWh
+    returns battery size and stil wasted energy
+    """
+    
+    pass
+    
+    
+    
+    
+    
 
 
