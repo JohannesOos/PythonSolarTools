@@ -286,8 +286,32 @@ def theoretical_battery(E_Solar, E_Load, bat_size = 100, bat_charge_eff = 1,
         bat_level = bat_size
     else:
         bat_level = 0
+    from_grid = []
+    wasted = []
+    too_much = [] # simple comaprison without battery
+    bat_level_list = []
     
-    pass
+    for i in range(len(E_Solar)):
+        dif = E_Solar[i] - E_Load[i]
+        if dif >0:  # if too much solar energy
+            from_grid.append(0)  # nothign from grid
+            if bat_level <= bat_size: #if battery not full
+                too_much.append(dif)
+                if dif < (bat_size - bat_level): # all fits in battery
+                    wasted.append(0)                   
+                    bat_level += dif
+                else:   #part fits in battery
+                    bat_level = bat_size
+                    wasted.append(dif - (bat_size - bat_level))
+            else: #battery is full
+                wasted.append(dif)
+        else: #there is too little solar energy                                  
+            wasted.append(0)
+            
+#        else:
+#            from_grid.append(-dif)
+#            wasted.append(0)
+
     
     
     
