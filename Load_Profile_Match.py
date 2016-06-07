@@ -275,13 +275,14 @@ print ('actual sums are: \n' +
         
     
             
-def theoretical_battery(E_Solar, E_Load, bat_size = 100, bat_charge_eff = 1, 
+def theoretical_battery(E_Solar, E_Load, bat_size_kWh = 100, bat_charge_eff = 1, 
                         bat_discharge_eff = 1, bat_start_full = True):
     """
     bith inputs must be yearly
     bat_size is storage size in kWh
     returns battery size and stil wasted energy
     """
+    bat_size = bat_size_kWh *1000
     if bat_start_full:
         bat_level = bat_size
     else:
@@ -295,8 +296,8 @@ def theoretical_battery(E_Solar, E_Load, bat_size = 100, bat_charge_eff = 1,
         dif = E_Solar[i] - E_Load[i]
         if dif >0:  # if too much solar energy
             from_grid.append(0)  # nothign from grid
+            too_much.append(dif)
             if bat_level <= bat_size: #if battery not full
-                too_much.append(dif)
                 if dif < (bat_size - bat_level): # all fits in battery
                     wasted.append(0)                   
                     bat_level += dif
@@ -307,10 +308,21 @@ def theoretical_battery(E_Solar, E_Load, bat_size = 100, bat_charge_eff = 1,
                 wasted.append(dif)
         else: #there is too little solar energy                                  
             wasted.append(0)
+            too_much.append(0)
+            if bat_level < 0.001: # battery empty
+                from_grid.append(-dif)
+            elif bat_level >= -dif: #battery can power differnece
+                from_grid.append(0)
+                bat_level +=dif
+            else: # battery can power part of differnce
+                from_grid.append(-dif+bat_level)
+                bat_level = 0
+    bat_level_list.append(bat_level)
+    
+    return [from_grid, wasted, too_much, bat_level_list ]             
+                
             
-#        else:
-#            from_grid.append(-dif)
-#            wasted.append(0)
+
 
     
     
