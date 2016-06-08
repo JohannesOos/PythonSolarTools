@@ -327,6 +327,34 @@ if len(test[0]) == len(test[1]) and len(test[2]) == len(test[1]) and len(test[3]
     print "same lengths"
 else:
     "something went wrong"
+    
+
+def plot_the_bat(E_Solar, E_Load, bat_size_kWh = 100, bat_charge_eff = 1, 
+                        bat_discharge_eff = 1, bat_start_full = True):
+     result = theoretical_battery(E_Solar, E_Load, bat_size_kWh = bat_size_kWh,
+                                  bat_charge_eff = bat_charge_eff , 
+                                  bat_discharge_eff = bat_discharge_eff, 
+                                  bat_start_full = bat_start_full)
+     daily_res = []
+     grid = result[0]
+     wasted = result[1]
+     too_much = result[2]
+     bat_level = result[3]
+    
+     if True:  # plot sample
+        day = len(E_Solar)/float(day)
+        plt.plot(range(day),grid[:day],  'r')
+        plt.plot(range(day),wasted[:day],  'b')
+        plt.plot(range(day),bat_level[:day],  'g')
+        #plt.plot(range(day),too_much[:day],  'r')
+        
+        plt.xlabel('Time unit')
+        plt.ylabel('kWh: minus is too little prod, plus is too much')
+        plt.title(r'kWh surplus and deficit')
+        
+        # Tweak spacing to prevent clipping of ylabel
+        plt.subplots_adjust(left=0.15)
+        plt.show()
 
          
                 
