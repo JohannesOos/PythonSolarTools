@@ -280,7 +280,7 @@ def theoretical_battery(E_Solar, E_Load, bat_size_kWh = 100, bat_charge_eff = 1,
     """
     bith inputs must be yearly
     bat_size is storage size in kWh
-    returns battery size and stil wasted energy
+    returns list of lists in given resolution
     """
     bat_size = bat_size_kWh *1000
     if bat_start_full:
@@ -363,13 +363,26 @@ def plot_the_bat(E_Solar, E_Load, bat_size_kWh = 100, bat_charge_eff = 1,
         too_much_daily = []
         bat_level_daily =  [] 
         day = len(E_Solar)/365
-        
-        
+               
         for i in range(365):
-            grid_daily.append(result[0][(i*day):(i+1*day)])
-            wasted_daily.append(result[1][(i*day):(i+1*day)])
-            too_much_daily.append(result[2][(i*day):(i+1*day)])
-            bat_level_daily.append(result[3][(i*day):(i+1*day)])
+            grid_daily.append(sum(result[0][(i*day):(i+1*day)]))
+            wasted_daily.append(sum(result[1][(i*day):(i+1*day)]))
+            too_much_daily.append(sum(result[2][(i*day):(i+1*day)]))
+            bat_level_daily.append(sum(result[3][(i*day):(i+1*day)]))
+        
+        plt.plot(range(365),grid_daily,  'r')
+        plt.plot(range(365),wasted_daily,  'b')
+        plt.plot(range(365),bat_level_daily,  'g')
+        #plt.plot(range(day),too_much[:day],  'r')
+        
+        plt.xlabel('Time unit')
+        plt.ylabel('kWh: minus is too little prod, plus is too much')
+        plt.title(r'kWh surplus and deficit')
+        
+        # Tweak spacing to prevent clipping of ylabel
+        plt.subplots_adjust(left=0.15)
+        plt.show()  
+        
 
          
                 
