@@ -335,14 +335,15 @@ def plot_the_bat(E_Solar, E_Load, bat_size_kWh = 100, bat_charge_eff = 1,
                                   bat_charge_eff = bat_charge_eff , 
                                   bat_discharge_eff = bat_discharge_eff, 
                                   bat_start_full = bat_start_full)
-     daily_res = []
+                                  
      grid = result[0]
      wasted = result[1]
      too_much = result[2]
      bat_level = result[3]
+     day = 0
     
      if True:  # plot sample
-        day = len(E_Solar)/float(day)
+        day = len(E_Solar)/365
         plt.plot(range(day),grid[:day],  'r')
         plt.plot(range(day),wasted[:day],  'b')
         plt.plot(range(day),bat_level[:day],  'g')
@@ -355,6 +356,20 @@ def plot_the_bat(E_Solar, E_Load, bat_size_kWh = 100, bat_charge_eff = 1,
         # Tweak spacing to prevent clipping of ylabel
         plt.subplots_adjust(left=0.15)
         plt.show()
+        
+     if True: # plot daily values
+        grid_daily = []
+        wasted_daily = []
+        too_much_daily = []
+        bat_level_daily =  [] 
+        day = len(E_Solar)/365
+        
+        
+        for i in range(365):
+            grid_daily.append(result[0][(i*day):(i+1*day)])
+            wasted_daily.append(result[1][(i*day):(i+1*day)])
+            too_much_daily.append(result[2][(i*day):(i+1*day)])
+            bat_level_daily.append(result[3][(i*day):(i+1*day)])
 
          
                 
