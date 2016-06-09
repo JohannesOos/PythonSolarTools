@@ -375,9 +375,9 @@ def plot_the_bat(E_Solar, E_Load, bat_size_kWh = 100, bat_charge_eff = 1,
         green = plt.plot(range(365),bat_level_daily,  'g', label = "bat_daily")
         #plt.plot(range(day),too_much[:day],  'r')
         
-        plt.xlabel('Time unit')
-        plt.ylabel('kWh: minus is too little prod, plus is too much')
-        plt.title(r'kWh surplus and deficit')
+        plt.xlabel('Day of year')
+        plt.ylabel('kWh: in sum per day')
+        plt.title(r'kWh daily sums for differnt values')
         
         #add legend
         legend = plt.legend()
