@@ -384,7 +384,7 @@ def plot_the_bat(E_Solar, E_Load, bat_size_kWh = 100, bat_charge_eff = 1,
         plt.show()  
         
 
-         
+test_plot_level = plot_the_bat(E_Solar, E_Load)   
                 
             
 
