@@ -370,14 +370,17 @@ def plot_the_bat(E_Solar, E_Load, bat_size_kWh = 100, bat_charge_eff = 1,
             too_much_daily.append(sum(result[2][(i*day):((i+1)*day)]))
             bat_level_daily.append(sum(result[3][(i*day):((i+1)*day)]))
         
-        plt.plot(range(365),grid_daily,  'r')
-        plt.plot(range(365),wasted_daily,  'b')
-        plt.plot(range(365),bat_level_daily,  'g')
+        red = plt.plot(range(365),grid_daily,  'r', label = "grid_daily")
+        blue = plt.plot(range(365),wasted_daily,  'b', label = "wasted_daily")
+        green = plt.plot(range(365),bat_level_daily,  'g', label = "bat_daily")
         #plt.plot(range(day),too_much[:day],  'r')
         
         plt.xlabel('Time unit')
         plt.ylabel('kWh: minus is too little prod, plus is too much')
         plt.title(r'kWh surplus and deficit')
+        
+        #add legend
+        legend = plt.legend()
         
         # Tweak spacing to prevent clipping of ylabel
         plt.subplots_adjust(left=0.15)
