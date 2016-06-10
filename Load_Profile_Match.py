@@ -398,16 +398,14 @@ def plot_the_bat(E_Solar, E_Load, bat_size_kWh = 100, bat_charge_eff = 1,
         day = len(E_Solar)/365
         
         #to be adjsuted
-#        for i in range(365):
-#            grid_daily.append(sum(result[0][(i*day):((i+1)*day)]))
-#            wasted_daily.append(sum(result[1][(i*day):((i+1)*day)]))
-#            too_much_daily.append(sum(result[2][(i*day):((i+1)*day)]))
-#            bat_level_daily.append(sum(result[3][(i*day):((i+1)*day)]))
+        for i in range(365):
+            grid_daily.append(sum(result[0][(i*day):((i+1)*day)]))
+            E_used_daily.append(sum(result[4][(i*day):((i+1)*day)]))
+            E_Solar_prod_Daily.append(sum(E_Solar[(i*day):((i+1)*day)]))
         
         red = plt.plot(range(365),grid_daily,  'r', label = "grid_daily")
         blue = plt.plot(range(365),E_used_daily,  'b', label = "used_daily")
-        green = plt.plot(range(365),E_Soalr_prod_Daily,  'g', label = "possible_daily")
-        #plt.plot(range(day),too_much[:day],  'r')
+        green = plt.plot(range(365),E_Solar_prod_Daily,  'g', label = "possible_daily")
         
         plt.xlabel('Day of year')
         plt.ylabel('kWh: in sum per day')
