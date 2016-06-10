@@ -324,7 +324,7 @@ def theoretical_battery(E_Solar, E_Load, bat_size_kWh = 100, bat_charge_eff = 1,
                 bat_level = 0
         bat_level_list.append(bat_level)
     
-    return [from_grid, wasted, too_much, bat_level_list ]
+    return [from_grid, wasted, too_much, bat_level_list, supplied_total ]
 
 test = theoretical_battery(E_Solar, E_Load)
 
