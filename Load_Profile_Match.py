@@ -291,12 +291,14 @@ def theoretical_battery(E_Solar, E_Load, bat_size_kWh = 100, bat_charge_eff = 1,
     wasted = []
     too_much = [] # simple comaprison without battery
     bat_level_list = []
+    supplied_total = []
     
     for i in range(len(E_Solar)):
         dif = E_Solar[i] - E_Load[i]
         if dif >0:  # if too much solar energy
             from_grid.append(0)  # nothign from grid
             too_much.append(dif)
+            supplied_total.append(E_Load[i]) # complete load comes from solar
             if bat_level <= bat_size: #if battery not full
                 if dif < (bat_size - bat_level): # all fits in battery
                     wasted.append(0)                   
@@ -311,11 +313,14 @@ def theoretical_battery(E_Solar, E_Load, bat_size_kWh = 100, bat_charge_eff = 1,
             too_much.append(0)
             if bat_level < 0.001: # battery empty
                 from_grid.append(-dif)
+                supplied_total.append(E_Solar[i]) # all solar is supplied
             elif bat_level >= -dif: #battery can power differnece
                 from_grid.append(0)
                 bat_level +=dif
+                supplied_total.append(E_Load[i]) # all supplied combo PV Bat
             else: # battery can power part of differnce
                 from_grid.append(-dif+bat_level)
+                supplied_total.append(E_Load[i]+bat_level)
                 bat_level = 0
         bat_level_list.append(bat_level)
     
@@ -386,7 +391,7 @@ def plot_the_bat(E_Solar, E_Load, bat_size_kWh = 100, bat_charge_eff = 1,
         plt.subplots_adjust(left=0.15)
         plt.show()  
         
-    if True: # plot daily values for grid and solar_prod and solar_use
+     if True: # plot daily values for grid and solar_prod and solar_use
         grid_daily = []
         E_used_daily = []
         E_Solar_prod_Daily =  [] 
