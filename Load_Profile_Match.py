@@ -408,7 +408,7 @@ def plot_the_bat(E_Solar, E_Load, bat_size_kWh = 100, bat_charge_eff = 1,
         green = plt.plot(range(365),E_Solar_prod_Daily,  'g', label = "possible_daily")
         
         plt.xlabel('Day of year')
-        plt.ylabel('kWh: in sum per day')
+        plt.ylabel('energy sum per day in kWh')
         plt.title(r'kWh daily sums for differnt values')
         
         #add legend
