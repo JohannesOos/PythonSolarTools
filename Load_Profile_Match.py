@@ -355,8 +355,8 @@ def plot_the_bat(E_Solar, E_Load, bat_size_kWh = 100, bat_charge_eff = 1,
         #plt.plot(range(day),too_much[:day],  'r')
         
         plt.xlabel('Time unit')
-        plt.ylabel('kWh: minus is too little prod, plus is too much')
-        plt.title(r'kWh surplus and deficit')
+        plt.ylabel('energy in kWh')
+        plt.title(r'kWh surplus (+) and deficit (-)')
         
         # Tweak spacing to prevent clipping of ylabel
         plt.subplots_adjust(left=0.15)
