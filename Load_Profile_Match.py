@@ -381,8 +381,8 @@ def plot_the_bat(E_Solar, E_Load, bat_size_kWh = 100, bat_charge_eff = 1,
         #plt.plot(range(day),too_much[:day],  'r')
         
         plt.xlabel('Day of year')
-        plt.ylabel('kWh: in sum per day')
-        plt.title(r'kWh daily sums for differnt values')
+        plt.ylabel('energy in kWh sum per day')
+        plt.title(r'energy daily sums for differnt values in kWh')
         
         #add legend
         legend = plt.legend()
