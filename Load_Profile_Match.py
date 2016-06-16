@@ -354,7 +354,7 @@ def plot_the_bat(E_Solar, E_Load, bat_size_kWh = 100, bat_charge_eff = 1,
         plt.plot(range(day),bat_level[200*day:201*day],  'g', label = "battery level")
         #plt.plot(range(day),too_much[:day],  'r')
         
-        plt.xlabel('Time unit')
+        plt.xlabel('minute of 19th July')
         plt.ylabel('energy in kWh')
         plt.title(r'kWh surplus (+) and deficit (-)')
 
