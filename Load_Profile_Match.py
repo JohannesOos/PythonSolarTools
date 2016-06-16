@@ -349,9 +349,9 @@ def plot_the_bat(E_Solar, E_Load, bat_size_kWh = 100, bat_charge_eff = 1,
     
      if True:  # plot sample
         day = len(E_Solar)/365
-        plt.plot(range(day),grid[:day],  'r', label = "from grid")
-        plt.plot(range(day),wasted[:day],  'b', label = "wasted = too much")
-        plt.plot(range(day),bat_level[:day],  'g', label = "battery level")
+        plt.plot(range(day),grid[200*day:201*day],  'r', label = "from grid")
+        plt.plot(range(day),wasted[200*day:201*day],  'b', label = "wasted = too much")
+        plt.plot(range(day),bat_level[200*day:201*day],  'g', label = "battery level")
         #plt.plot(range(day),too_much[:day],  'r')
         
         plt.xlabel('Time unit')
