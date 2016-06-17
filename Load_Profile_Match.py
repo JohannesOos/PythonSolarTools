@@ -271,6 +271,7 @@ print ('actual sums are: \n' +
         'total yearly production in kWh: ' + str(a[0]) + '\n'
         'total yearly load in kWh: ' + str(a[1]) + '\n'
         'total yearly taken from grid in kWh: ' + str(a[2]) +'\n'
+        'total yearly taken wasted solar in kWh: ' + str(a[3]) +'\n'
         'total yearly taken from solar in kWh: ' + str(a[0] - a[3]) )
         
     
