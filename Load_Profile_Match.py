@@ -241,7 +241,7 @@ def adjsut_sizeSolar_to_sum_zero(E_Solar, E_Load):
     needed_adjsutment_rel = E_Load_Sum / float(E_Solar_Sum) *100
     return needed_adjsutment_rel
     
-print (' to come to yearly sum of zero (thepretical), the soalr system needs' +
+print (' to come to yearly sum of zero (theoretical), the solar system needs' +
         'to be adjusted to ' + 
         str(adjsut_sizeSolar_to_sum_zero(E_Solar, E_Load)) + '% of its size')
 
