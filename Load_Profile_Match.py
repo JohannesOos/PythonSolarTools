@@ -5,11 +5,11 @@ Created on Mon May 30 06:51:03 2016
 @author: Oos
 """
 
-import pandas as pd
-import numpy as np
+#import pandas as pd
+#import numpy as np
 from  xlrd import open_workbook
-from scipy import optimize as op
-import matplotlib.mlab as mlab
+#from scipy import optimize as op
+#import matplotlib.mlab as mlab
 import matplotlib.pyplot as plt
 
 #loadprofile from FLUKE CSV measurement file
@@ -344,7 +344,7 @@ def plot_the_bat(E_Solar, E_Load, bat_size_kWh = 100, bat_charge_eff = 1,
                                   
      grid = result[0]
      wasted = result[1]
-     too_much = result[2]
+     #too_much = result[2]
      bat_level = result[3]
      day = 0
     
