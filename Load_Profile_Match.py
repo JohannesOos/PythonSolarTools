@@ -389,7 +389,7 @@ def plot_the_bat(E_Solar, E_Load, bat_size_kWh = 100, bat_charge_eff = 1,
         plt.title(r'energy daily sums for differnt values in kWh')
         
         #add legend
-        legend = plt.legend()
+        plt.legend()
         
         # Tweak spacing to prevent clipping of ylabel
         plt.subplots_adjust(left=0.15)
@@ -407,16 +407,16 @@ def plot_the_bat(E_Solar, E_Load, bat_size_kWh = 100, bat_charge_eff = 1,
             E_used_daily.append(sum(result[4][(i*day):((i+1)*day)]))
             E_Solar_prod_Daily.append(sum(E_Solar[(i*day):((i+1)*day)]))
         
-        red = plt.plot(range(365),grid_daily,  'r', label = "grid_daily")
-        blue = plt.plot(range(365),E_used_daily,  'b', label = "used_daily")
-        green = plt.plot(range(365),E_Solar_prod_Daily,  'g', label = "possible_daily")
+        plt.plot(range(365),grid_daily,  'r', label = "grid_daily")
+        plt.plot(range(365),E_used_daily,  'b', label = "used_daily")
+        plt.plot(range(365),E_Solar_prod_Daily,  'g', label = "possible_daily")
         
         plt.xlabel('Day of year')
         plt.ylabel('energy sum per day in kWh')
         plt.title(r'kWh daily sums for differnt values')
         
         #add legend
-        legend = plt.legend()
+        plt.legend()
         
         # Tweak spacing to prevent clipping of ylabel
         plt.subplots_adjust(left=0.15)
