@@ -336,7 +336,7 @@ else:
     
 
 def plot_the_bat(E_Solar, E_Load, bat_size_kWh = 100, bat_charge_eff = 1, 
-                        bat_discharge_eff = 1, bat_start_full = True):
+                        bat_discharge_eff = 1, bat_start_full = True, sample1=True):
      result = theoretical_battery(E_Solar, E_Load, bat_size_kWh = bat_size_kWh,
                                   bat_charge_eff = bat_charge_eff , 
                                   bat_discharge_eff = bat_discharge_eff, 
@@ -348,7 +348,7 @@ def plot_the_bat(E_Solar, E_Load, bat_size_kWh = 100, bat_charge_eff = 1,
      bat_level = result[3]
      day = 0
     
-     if True:  # plot sample
+     if sample1:  # plot sample
         day = len(E_Solar)/365
         plt.plot(range(day),grid[200*day:201*day],  'r', label = "from grid")
         plt.plot(range(day),wasted[200*day:201*day],  'b', label = "wasted = too much")
